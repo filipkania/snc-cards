@@ -4,6 +4,7 @@ import styles from "@styles/Home.module.scss";
 import ListEntries from "@components/ListEntries";
 import { motion } from "framer-motion";
 import Filter from "@components/Filter";
+import Footer from "@components/Footer";
 
 export const getStaticProps = async () => {
   const apiUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -45,6 +46,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ data }
       </motion.h1>
       <Filter value={inputValue} onChangeHandler={handleInputChange} />
       <ListEntries filterString={filterString} entries={data} />
+      <Footer />
     </main>
   );
 };
