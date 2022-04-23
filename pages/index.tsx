@@ -11,7 +11,7 @@ export const getStaticProps = async () => {
   const rawData = await fetch(`${apiUrl}/entries`);
   let data: APIData[] = await rawData.json();
   data.sort((a, b) => {
-    return Math.abs(Date.now() - new Date(a.dueDate).getTime()) - Math.abs(Date.now() - new Date(b.dueDate).getTime());
+    return Math.abs(Date.now() - new Date(a.published_at).getTime()) - Math.abs(Date.now() - new Date(b.published_at).getTime());
   });
   return {
     props: {

@@ -18,7 +18,6 @@ const EntryExpanded = ({ entry, selectEntry }: Props) => {
   const { class: dataClass, description, dueDate, slug, title } = entry;
   const ref = useRef<null | HTMLDivElement>(null);
   const [dupsData, setDupsData] = useState<QuestionData[][]>();
-  const entryDate = new Date(dueDate || 0);
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
@@ -65,13 +64,13 @@ const EntryExpanded = ({ entry, selectEntry }: Props) => {
           <CloseSquare size="32" color="currentColor" variant="Bold" />
         </button>
         <p className={styles.title}>{title}</p>
-
-        <p className={styles.date}>
-          {entryDate.toLocaleString("en-US", {
-            dateStyle: "full",
-          })}
-          {entryDate < yesterday && <span className={styles.overdue}>Overdue</span>}
-        </p>
+        { dueDate && 
+          <p className={styles.date}>
+            {new Date(dueDate).toLocaleString("en-US", {
+              dateStyle: "full",
+            })}
+            {new Date(dueDate) < yesterday && <span className={styles.overdue}>Overdue</span>}
+          </p> }
         <div className={styles.label}>Description</div>
         <p className={styles.info}>{description || "No description provided"}</p>
 

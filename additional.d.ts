@@ -5,7 +5,7 @@ interface APIData {
   slug: string;
   class: ClassString;
   description: string;
-  dueDate: string;
+  dueDate: string | null;
   questionData: QuestionData[];
 
   created_at: string;

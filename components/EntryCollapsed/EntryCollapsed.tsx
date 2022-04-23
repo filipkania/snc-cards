@@ -22,7 +22,6 @@ const Tag: FC = ({ children }) => {
 
 const EntryCollapsed = ({ entry, onSelect, entryDelay }: Props) => {
   const [dupsData, setDupsData] = useState<QuestionData[][]>();
-  const dueDate = new Date(entry.dueDate);
   const handleSelect = (_e: MouseEvent<HTMLDivElement>) => {
     onSelect(entry.slug);
   };
@@ -64,7 +63,7 @@ const EntryCollapsed = ({ entry, onSelect, entryDelay }: Props) => {
       <h1 className={styles.title}>{entry.title}</h1>
       <div className={styles.tags}>
         <Tag>{getHumanReadableClass(entry.class)}</Tag>
-        <Tag>{dueDate.toLocaleDateString("en-US", { day: "2-digit", weekday: "short", month: "short" })}</Tag>
+        { entry.dueDate && <Tag>{new Date(entry.dueDate).toLocaleDateString("en-US", { day: "2-digit", weekday: "short", month: "short" })}</Tag> }
         <Tag>{entry.questionData.length} words</Tag>
       </div>
       {/* <WordsCount amount={entry.questionData.length} /> */}
