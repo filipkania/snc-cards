@@ -17,6 +17,11 @@ const Filter = ({ value, onChangeHandler }: Props) => {
         e.preventDefault(); // prevent browser shortcut
         inputRef.current?.focus();
       }
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        inputRef.current?.blur();
+      }
     };
     window.addEventListener("keydown", handler);
     return () => {
