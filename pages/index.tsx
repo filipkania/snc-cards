@@ -46,7 +46,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ data }
       </motion.h1>
       <Filter value={inputValue} onChangeHandler={handleInputChange} />
       <ListEntries filterString={filterString} entries={data} />
-      <Footer />
+      <Footer hidden={filterString?.length != 0} />
     </main>
   );
 };
