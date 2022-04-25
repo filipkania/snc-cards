@@ -9,9 +9,11 @@ interface Props {
 
 const Filter = ({ value, onChangeHandler }: Props) => {
   const inputRef = useRef<null | HTMLInputElement>(null);
+  const isMac = typeof navigator !== 'undefined' && navigator.userAgent.includes("Mac OS X");
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === "k") {
+      if ((isMac ? e.metaKey : e.ctrlKey) && e.key === "k") {
         e.preventDefault(); // prevent browser shortcut
         inputRef.current?.focus();
       }
@@ -42,7 +44,7 @@ const Filter = ({ value, onChangeHandler }: Props) => {
           animate={{ opacity: value.length === 0 ? 1 : 0 }}
           className={styles.keyboard__indicator}
         >
-          <div className={styles.key}>Ctrl</div>
+          <div className={styles.key}>{isMac ? "⌘" : "Ctrl"}</div>
           <div className={styles.key}>K</div>
         </motion.div>
       </div>
